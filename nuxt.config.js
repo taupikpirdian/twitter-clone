@@ -65,7 +65,6 @@ export default {
   build: {
     analyze: {
       analyzerMode: 'static'
-    },
-    babel: { compact: true }
+    }
   }
 }
