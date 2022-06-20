@@ -10,50 +10,50 @@
           <ul class="nav flex-column">
             <li class="nav-item">
               <a class="nav-link active" href="#">
-                <i class="fas fa-house-damage"></i>
+                <font-awesome-icon :icon="['fas', 'fa-house-damage']"/>
                 <span class="menu-text">Home</span>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">
-                <i class="fab fa-slack-hash"></i>
+                <font-awesome-icon :icon="['fab', 'fa-slack-hash']"/>
                 <span class="menu-text">Explore</span>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">
-                <i class="far fa-bell"></i>
+                <font-awesome-icon :icon="['fa', 'fa-bell']"/>
                 <span class="menu-text">Notifications</span>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">
-                <i class="far fa-envelope"></i>
+                <font-awesome-icon :icon="['fa', 'fa-envelope']"/>
                 <span class="menu-text">Messages</span>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">
-                <i class="far fa-bookmark"></i>
+                <font-awesome-icon :icon="['fa', 'fa-bookmark']"/>
                 <span class="menu-text">Bookmarks</span>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">
-                <i class="far fa-list-alt"></i>
+                <font-awesome-icon :icon="['fa', 'fa-list-alt']"/>
                 <span class="menu-text">Lists</span>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">
-                <i class="far fa-user-circle"></i>
+                <font-awesome-icon :icon="['fa', 'fa-user']"/>
                 <span class="menu-text">Profile</span>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">
-                <i class="fas fa-ellipsis-h"></i>
-                <span class="menu-text">More</span>
+                <font-awesome-icon :icon="['fas', 'fa-ellipsis-h']" />
+                <span class="menu-text">Mores</span>
               </a>
             </li>
             <li class="nav-item mobile-post">
@@ -62,7 +62,7 @@
               </a>
             </li>
           </ul>
-          <button type="button" class="btn btn-primary btn-sm tweeterBtn">Tweet</button>
+          <button type="button" class="btn btn-primary btn-sm tweeterBtn"> Tweet</button>
         </nav>
       </div>
       <!--middle block-->
@@ -86,10 +86,18 @@
               </div>
               <div class="post-icons">
                 <div class="first-post-icons">
-                  <i class="fas fa-image"></i>
-                  <i class="fas fa-gift"></i>
-                  <i class="fas fa-signal"></i>
-                  <i class="fas fa-smile"></i>
+                  <i>
+                    <font-awesome-icon :icon="['fas', 'fa-image']" />
+                  </i>
+                  <i>
+                    <font-awesome-icon :icon="['fas', 'fa-gift']" />
+                  </i>
+                  <i>
+                    <font-awesome-icon :icon="['fas', 'fa-signal']" />
+                  </i>
+                  <i>
+                    <font-awesome-icon :icon="['fas', 'fa-smile']" />
+                  </i>
                 </div>
                 <div class="second-post-icons">
                   <i class="far fa-circle"></i>
