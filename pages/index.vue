@@ -80,9 +80,9 @@
             <form>
               <div class="post-blocks">
                 <div class="post-profile">
-                  <img src="/img_avatar2.png" class="avatar" alt="Avatar">
+                  <img src="/img_avatar.png" class="avatar" alt="Avatar">
                 </div>
-                <textarea class="post-form" placeholder="Apa yang sedang terjadi?"></textarea>
+                <textarea class="post-form" placeholder="Apa yang sedang terjadi?" ref="text"></textarea>
               </div>
               <div class="post-icons">
                 <div class="first-post-icons">
@@ -117,8 +117,8 @@
             </div>
             <div class="tweet-txt">
               <div class="tweet-name-date">
-                <strong> Shloch</strong>
-                <span class="twitter-account"> @shloch</span> - <span class="date">Nov 11</span>
+                <strong> Taupik Pirdian</strong>
+                <span class="twitter-account"> @piridin</span> - <span class="date">Nov 11</span>
               </div>
               <div class="message"> Building the Portfolio page of a graphic designer (Infinity Graphics) </div>
               <div class="tweet-icons">
