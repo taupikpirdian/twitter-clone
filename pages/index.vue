@@ -2,69 +2,7 @@
   <div class='container'>
     <div class='row'>
       <!--Left Menu block-->
-      <div class='col-lg-3 col-md-1 col-2'>
-        <nav>
-          <a href="#">
-            <i class="fab fa-twitter fa-2x"></i>
-          </a>
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              <a class="nav-link active" href="#">
-                <font-awesome-icon :icon="['fas', 'fa-house-damage']"/>
-                <span class="menu-text">Home</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <font-awesome-icon :icon="['fab', 'fa-slack-hash']"/>
-                <span class="menu-text">Explore</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <font-awesome-icon :icon="['fa', 'fa-bell']"/>
-                <span class="menu-text">Notifications</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <font-awesome-icon :icon="['fa', 'fa-envelope']"/>
-                <span class="menu-text">Messages</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <font-awesome-icon :icon="['fa', 'fa-bookmark']"/>
-                <span class="menu-text">Bookmarks</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <font-awesome-icon :icon="['fa', 'fa-list-alt']"/>
-                <span class="menu-text">Lists</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <font-awesome-icon :icon="['fa', 'fa-user']"/>
-                <span class="menu-text">Profile</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <font-awesome-icon :icon="['fas', 'fa-ellipsis-h']" />
-                <span class="menu-text">Mores</span>
-              </a>
-            </li>
-            <li class="nav-item mobile-post">
-              <a class="nav-link2" href="#">
-                <i class="far fa-edit"></i>
-              </a>
-            </li>
-          </ul>
-          <button type="button" class="btn btn-primary btn-sm tweeterBtn"> Tweet</button>
-        </nav>
-      </div>
+      <LeftMenu />
       <!--middle block-->
       <div class='col-lg-6 col-md-11 col-10'>
         <main>
@@ -77,12 +15,12 @@
             </div>
           </div>
           <div class="whats-happening">
-            <form>
+            <form @submit="onSubmit">
               <div class="post-blocks">
                 <div class="post-profile">
                   <img src="/img_avatar.png" class="avatar" alt="Avatar">
                 </div>
-                <textarea class="post-form" placeholder="Apa yang sedang terjadi?" ref="text"></textarea>
+                <textarea class="post-form" placeholder="Apa yang sedang terjadi?" v-model="tweet" name="tweet"></textarea>
               </div>
               <div class="post-icons">
                 <div class="first-post-icons">
@@ -102,7 +40,7 @@
                 <div class="second-post-icons">
                   <i class="far fa-circle"></i>
                   <i class="fas fa-plus-circle"></i>
-                  <button type="button" class="btn btn-primary btn-sm tweeterBtn">Tweet</button>
+                  <input type="submit" value="Tweet" class="btn btn-primary btn-sm tweeterBtn" />
                 </div>
               </div>
             </form>
@@ -111,16 +49,16 @@
         <!--TWEEEEEETS-->
         <section id="tweets">
           <!--1 tweet-->
-          <div class="tweet-1">
+          <div class="tweet-1" v-for="(item) in items" :key="item.id">
             <div class="tweet-img">
               <img src="/img_avatar.png" alt="Avatar">
             </div>
             <div class="tweet-txt">
               <div class="tweet-name-date">
                 <strong> Taupik Pirdian</strong>
-                <span class="twitter-account"> @piridin</span> - <span class="date">Nov 11</span>
+                <span class="twitter-account"> @piridin</span> - <span class="date"> {{ item.date }}</span>
               </div>
-              <div class="message"> Building the Portfolio page of a graphic designer (Infinity Graphics) </div>
+              <div class="message"> {{ item.tweet }}</div>
               <div class="tweet-icons">
                 <i class="fas fa-image"></i>
                 <i class="fas fa-gift"></i>
@@ -132,50 +70,64 @@
         </section>
       </div>
       <!--Right  block-->
-      <div class='col-lg-3 d-none d-lg-block' id="rightBlock">
-        <!--proposed profiles-->
-        <div class="other-profiles">
-          <div class="heading">
-            <h5>Who to follow</h5>
-          </div>
-          <div class="profile-1">
-            <div class="profile-img">
-              <img src="/img_avatar2.png" class="avatar" alt="Avatar">
-            </div>
-            <div class="profile-name"> CTE Magazine <br />
-              <span class="twitter-account">@CTEMagPlus</span>
-            </div>
-            <div class="follow-btn">
-              <button>Follow</button>
-            </div>
-          </div>
-          <div class="profile-1">
-            <div class="profile-img">
-              <img src="/img_avatar.png" class="avatar" alt="Avatar">
-            </div>
-            <div class="profile-name"> CTE Magazine <br />
-              <span class="twitter-account">@CTEMagPlus</span>
-            </div>
-            <div class="follow-btn">
-              <button>Follow</button>
-            </div>
-          </div>
-          <div class="profile-1">
-            <div class="profile-img">
-              <img src="/img_avatar2.png" class="avatar" alt="Avatar">
-            </div>
-            <div class="profile-name"> CTE Magazine <br />
-              <span class="twitter-account">@CTEMagPlus</span>
-            </div>
-            <div class="follow-btn">
-              <button>Follow</button>
-            </div>
-          </div>
-          <div class="heading">
-            <a href="#">Show more</a>
-          </div>
-        </div>
-      </div>
+      <RightBlock />
     </div>
   </div>
 </template>
+
+<script>
+    let arrjson = [];
+    export default {
+        name : 'AddInformation',
+        data (){
+            return {
+                tweet : '',
+                date : '',
+                items: arrjson
+            }
+        },
+        methods : {
+            onSubmit(e){
+                e.preventDefault()
+                if(!this.tweet){
+                    alert('Please Type a Tweet')
+                    return
+                }
+
+                var currentDate = new Date();
+                var month = currentDate.getMonth();
+                var date = currentDate.getDate();
+                var time = currentDate.toLocaleTimeString();
+                var stringDate = monthTrans(month) + ' ' + date + ', ' + time
+
+                const NewInformation = {
+                    id: Math.floor(Math.random() * 100000),
+                    tweet : this.tweet,
+                    date : stringDate,
+                }
+
+                arrjson.push(NewInformation)
+                this.tweet = ''
+            }
+        }
+    }
+
+    function monthTrans(month) {
+        switch(month) {
+            case 0: month = "Jan"; break;
+            case 1: month = "Feb"; break;
+            case 2: month = "Mar"; break;
+            case 3: month = "Apr"; break;
+            case 4: month = "May"; break;
+            case 5: month = "Jun"; break;
+            case 6: month = "Jul"; break;
+            case 7: month = "Aug"; break;
+            case 8: month = "Sep"; break;
+            case 9: month = "Oct"; break;
+            case 10: month = "Nov"; break;
+            case 11: month = "Des"; break;
+        }
+
+        return month;
+    }
+</script>
