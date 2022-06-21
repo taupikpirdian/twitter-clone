@@ -1,14 +1,14 @@
 <template>
-  <div class='container'>
-    <div class='row'>
+  <div class="container">
+    <div class="row">
       <!--Left Menu block-->
       <LeftMenu />
       <!--middle block-->
-      <div class='col-lg-6 col-md-11 col-10'>
+      <div class="col-lg-6 col-md-11 col-10">
         <main>
           <div class="first-part">
             <div>
-              <a class="home">Beranda</a>
+              <a class="home">Beranda ({{ $store.state.counter }})</a>
             </div>
             <div>
               <i class="far fa-star"></i>
@@ -18,9 +18,14 @@
             <form @submit="onSubmit">
               <div class="post-blocks">
                 <div class="post-profile">
-                  <img src="/img_avatar.png" class="avatar" alt="Avatar">
+                  <img src="/img_avatar.png" class="avatar" alt="Avatar" />
                 </div>
-                <textarea class="post-form" placeholder="Apa yang sedang terjadi?" v-model="tweet" name="tweet"></textarea>
+                <textarea
+                  class="post-form"
+                  placeholder="Apa yang sedang terjadi?"
+                  v-model="tweet"
+                  name="tweet"
+                ></textarea>
               </div>
               <div class="post-icons">
                 <div class="first-post-icons">
@@ -40,7 +45,11 @@
                 <div class="second-post-icons">
                   <i class="far fa-circle"></i>
                   <i class="fas fa-plus-circle"></i>
-                  <input type="submit" value="Tweet" class="btn btn-primary btn-sm tweeterBtn" />
+                  <input @click="$store.commit('increment')"
+                    type="submit"
+                    value="Tweet"
+                    class="btn btn-primary btn-sm tweeterBtn"
+                  />
                 </div>
               </div>
             </form>
@@ -49,16 +58,17 @@
         <!--TWEEEEEETS-->
         <section id="tweets">
           <!--1 tweet-->
-          <div class="tweet-1" v-for="(item) in items" :key="item.id">
+          <div class="tweet-1" v-for="item in items" :key="item.id">
             <div class="tweet-img">
-              <img src="/img_avatar.png" alt="Avatar">
+              <img src="/img_avatar.png" alt="Avatar" />
             </div>
             <div class="tweet-txt">
               <div class="tweet-name-date">
                 <strong> Taupik Pirdian</strong>
-                <span class="twitter-account"> @piridin</span> - <span class="date"> {{ item.date }}</span>
+                <span class="twitter-account"> @piridin</span> -
+                <span class="date"> {{ item.date }}</span>
               </div>
-              <div class="message"> {{ item.tweet }}</div>
+              <div class="message">{{ item.tweet }}</div>
               <div class="tweet-icons">
                 <i class="fas fa-image"></i>
                 <i class="fas fa-gift"></i>
@@ -76,58 +86,84 @@
 </template>
 
 <script>
-    let arrjson = [];
-    export default {
-        name : 'AddInformation',
-        data (){
-            return {
-                tweet : '',
-                date : '',
-                items: arrjson
-            }
-        },
-        methods : {
-            onSubmit(e){
-                e.preventDefault()
-                if(!this.tweet){
-                    alert('Please Type a Tweet')
-                    return
-                }
+let arrjson = [];
+export default {
+  name: "AddInformation",
+  data() {
+    return {
+      tweet: "",
+      date: "",
+      items: arrjson,
+    };
+  },
+  methods: {
+    onSubmit(e) {
+      e.preventDefault();
+      if (!this.tweet) {
+        alert("Please Type a Tweet");
+        return;
+      }
 
-                var currentDate = new Date();
-                var month = currentDate.getMonth();
-                var date = currentDate.getDate();
-                var time = currentDate.toLocaleTimeString();
-                var stringDate = monthTrans(month) + ' ' + date + ', ' + time
+      // store.commit('increment')
 
-                const NewInformation = {
-                    id: Math.floor(Math.random() * 100000),
-                    tweet : this.tweet,
-                    date : stringDate,
-                }
+      var currentDate = new Date();
+      var month = currentDate.getMonth();
+      var date = currentDate.getDate();
+      var time = currentDate.toLocaleTimeString();
+      var stringDate = monthTrans(month) + " " + date + ", " + time;
 
-                arrjson.push(NewInformation)
-                this.tweet = ''
-            }
-        }
-    }
+      const NewInformation = {
+        id: Math.floor(Math.random() * 100000),
+        tweet: this.tweet,
+        date: stringDate,
+      };
 
-    function monthTrans(month) {
-        switch(month) {
-            case 0: month = "Jan"; break;
-            case 1: month = "Feb"; break;
-            case 2: month = "Mar"; break;
-            case 3: month = "Apr"; break;
-            case 4: month = "May"; break;
-            case 5: month = "Jun"; break;
-            case 6: month = "Jul"; break;
-            case 7: month = "Aug"; break;
-            case 8: month = "Sep"; break;
-            case 9: month = "Oct"; break;
-            case 10: month = "Nov"; break;
-            case 11: month = "Des"; break;
-        }
+      arrjson.push(NewInformation);
+      this.tweet = "";
+    },
+  },
+};
 
-        return month;
-    }
+function monthTrans(month) {
+  switch (month) {
+    case 0:
+      month = "Jan";
+      break;
+    case 1:
+      month = "Feb";
+      break;
+    case 2:
+      month = "Mar";
+      break;
+    case 3:
+      month = "Apr";
+      break;
+    case 4:
+      month = "May";
+      break;
+    case 5:
+      month = "Jun";
+      break;
+    case 6:
+      month = "Jul";
+      break;
+    case 7:
+      month = "Aug";
+      break;
+    case 8:
+      month = "Sep";
+      break;
+    case 9:
+      month = "Oct";
+      break;
+    case 10:
+      month = "Nov";
+      break;
+    case 11:
+      month = "Des";
+      break;
+  }
+
+  return month;
+}
 </script>
