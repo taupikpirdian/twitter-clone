@@ -63,8 +63,12 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    analyze: {
-      analyzerMode: 'static'
+    babel: { 
+      compact: true 
     }
+  },
+
+  performance: {
+    hints: false
   }
 }
