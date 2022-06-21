@@ -25,6 +25,7 @@
                   placeholder="Apa yang sedang terjadi?"
                   v-model="tweet"
                   name="tweet"
+                  v-on:keyup="triggerKey"
                 ></textarea>
               </div>
               <div class="post-icons">
@@ -48,7 +49,8 @@
                   <input @click="$store.commit('increment')"
                     type="submit"
                     value="Tweet"
-                    class="btn btn-primary btn-sm tweeterBtn"
+                    id="submit-tweet"
+                    class="btn btn-primary btn-sm tweeterBtn" disabled
                   />
                 </div>
               </div>
@@ -104,8 +106,6 @@ export default {
         return;
       }
 
-      // store.commit('increment')
-
       var currentDate = new Date();
       var month = currentDate.getMonth();
       var date = currentDate.getDate();
@@ -120,7 +120,12 @@ export default {
 
       arrjson.push(NewInformation);
       this.tweet = "";
+      document.getElementById('submit-tweet').disabled = true;
+
     },
+    triggerKey: function(evt) {
+        document.getElementById('submit-tweet').disabled = false;
+    }
   },
 };
 
